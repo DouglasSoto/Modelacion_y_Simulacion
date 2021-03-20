@@ -1,0 +1,82 @@
+#Douglas y Fernandito
+
+import os
+import math
+import random
+
+def normal():
+
+    e = 2.718
+    x = float(input("Ingrese el promedio: "))
+    miu = float(input("Ingrese µ: "))
+    suma = float(input("Ingrese Σ: "))
+    z = (x - miu)/suma
+    zn = 1 + z
+
+    if z > 0:
+        print("Resultado: ", round(z,3))
+        decimal, entero = math.modf(z)
+        print("Resultado entero : ",entero)
+        print("Resultado decimal: ",decimal)
+    else:
+        print("El resultado es: ", round(zn,3))
+        decimal, entero = math.modf(zn)
+        print("Resultado entero: ",entero)
+        print("Resultado decimales: ",decimal)
+		
+    salir = input("\nPresione S y enter para volver ")
+    if salir == "s":
+        menu()
+	
+def binomial():
+
+    n = int(input("Ingrese numero de ensayos: "))
+    k = int(input("Ingrese numero de exitos: "))
+    p = float(input("Ingrese la probabilidad de exito: "))
+    q = 1-p
+    f = (factorial(n)/((factorial(k))*(factorial(n-k))))
+    r = (f*(p**k)*(q**(n-k)))*100
+    print("El resultado es:", r)
+	
+    salir = input("\nPresione S y enter para volver ")
+    if salir == "s":
+        menu()
+
+def poisson():
+
+    e = 2.718
+    miu = int(input("Ingrese µ: "))
+    k = int(input("Ingrese k: "))
+    f = factorial(k)
+    p = ((miu**(k))*(e**(miu*-1))/(f))
+    if p < 0:
+        print("El resultado es menor a 0")
+    else:
+        print("El resultado es:", (round(p, 3)) * 100, "\n")
+
+    salir = input("Presione S y enter para volver ")
+    if salir == "s":
+        menu()
+
+def factorial(n):
+    if n < 2:
+        return 1
+    elif n < 1:
+        return 1
+    elif n:
+        return  n * factorial(n - 1)
+
+def menu():
+    print("SELECCIONE EL MODELO QUE QUIERA OPERAR")
+    print("\n   1. NORMAL\n   2. BINOMIAL\n   3. POISSON\n")
+	
+    opcion = int(input(":"))
+    if opcion == 1:
+        normal()
+    elif opcion == 2:
+        binomial()
+    elif opcion == 3:
+        poisson()
+    else: 
+        menu()
+menu()
